@@ -21,7 +21,7 @@ const App = () => {
           <Router>
             <Routes>
               <Route path="/" element={<Page />} />
-              <Route path="/page2/:category" element={<Page2 />} />
+                <Route path="/page2/:categoryId" element={<Page2 />} />
               <Route path="/previewPage" element={<Page3 />} />
               <Route path="/previewPage/:id" element={<Page3 />} />
               <Route path="previewPage/:id" element={<Page3 />} />

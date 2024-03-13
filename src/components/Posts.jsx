@@ -15,7 +15,7 @@ const MyComponent = () => {
     const [page, setPage] = useState(1);
     const [allData, setAllData] = useState([]);
     const { data, loading, error } = useFetch(
-        `https://places-test-api.danya.tech/api/posts?populate=*&pagination[pageSize]=${pageSize}&pagination[page]=${page}&sort[0]=createdAt:desc`
+        `https://places-test-api.danya.tech/api/posts?populate=*&pagination[pageSize]=${pageSize}&pagination[page]=${page}`
     );
 
     const lastPostRef = useRef(null);

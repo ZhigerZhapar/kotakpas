@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import cl from "./MyBigButton.module.css";
-import {useNavigate, useLocation, Link} from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setActiveCategory } from "../../../../../actions.js";
+import React, {useEffect, useState} from 'react';
+import cl from "./MyBigButton.module.css"
+import {Link, useLocation, useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setActiveCategory} from "../../../../../actions.js";
 
 const MyBigButton = ({ onSelectCategory, handleFilterPageClose, categoryId, onLoadPosts, children, ...props }) => {
     const navigate = useNavigate();
@@ -11,6 +11,8 @@ const MyBigButton = ({ onSelectCategory, handleFilterPageClose, categoryId, onLo
 
     const handleButtonClick = () => {
         if (categoryId) {
+            console.log('Navigating to:',` /page2/${categoryId}`);
+
             if (onSelectCategory) {
                 onSelectCategory({ categoryId });
             }
@@ -19,6 +21,7 @@ const MyBigButton = ({ onSelectCategory, handleFilterPageClose, categoryId, onLo
             if (onLoadPosts) {
                 onLoadPosts(categoryId);
             }
+
             // Manually trigger a page reload
             window.location.reload();
         } else {
@@ -27,6 +30,8 @@ const MyBigButton = ({ onSelectCategory, handleFilterPageClose, categoryId, onLo
     };
 
     useEffect(() => {
+        console.log('Current pathname:', location.pathname);
+
         // Fetch updated data when the route changes
         const currentCategoryId = location.pathname.split('/').pop();
         if (currentCategoryId && onSelectCategory) {
@@ -40,8 +45,11 @@ const MyBigButton = ({ onSelectCategory, handleFilterPageClose, categoryId, onLo
     }, [location.pathname, onSelectCategory, dispatch]);
 
     return (
-        <Link{...props} onClick={handleButtonClick} className={cl.myBtn}>
+        <Link to={`/page2/${categoryId}`} onClick={(event) => handleButtonClick(event)} className={cl.ntclown}>
+
+        <button {...props} onClick={handleButtonClick} className={cl.myBtn}>
             {children}
+        </button>
         </Link>
     );
 };

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import cl from "./MyBigButton.module.css";
-import { useNavigate, useLocation } from "react-router-dom";
+import {useNavigate, useLocation, Link} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setActiveCategory } from "../../../../../actions.js";
 
@@ -40,9 +40,9 @@ const MyBigButton = ({ onSelectCategory, handleFilterPageClose, categoryId, onLo
     }, [location.pathname, onSelectCategory, dispatch]);
 
     return (
-        <button {...props} onClick={handleButtonClick} className={cl.myBtn}>
+        <Link{...props} onClick={handleButtonClick} className={cl.myBtn}>
             {children}
-        </button>
+        </Link>
     );
 };
 
